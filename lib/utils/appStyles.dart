@@ -13,7 +13,7 @@ class Appstyles {
   static TextStyle bold20black = GoogleFonts.inter(
       color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold);
   static TextStyle bold20PrimaryLight = GoogleFonts.inter(
-      color: Appcolors.blueColor, fontSize: 20, fontWeight: FontWeight.bold);
+      color: Appcolors.mainColor, fontSize: 20, fontWeight: FontWeight.bold);
   static TextStyle white14 = GoogleFonts.inter(
     color: Appcolors.whiteColor,
     fontSize: 14,
@@ -27,14 +27,14 @@ class Appstyles {
   static TextStyle bold14black = GoogleFonts.inter(
       color: Colors.black, fontSize: 14, fontWeight: FontWeight.bold);
 static TextStyle bold14PrimaryLight = GoogleFonts.inter(
-      color: Appcolors.blueColor, fontSize: 14, fontWeight: FontWeight.bold);
+      color: Appcolors.darkblue, fontSize: 14, fontWeight: FontWeight.bold);
 static TextStyle white20 = GoogleFonts.inter(
       color: Appcolors.whiteColor, fontSize: 20);
 
 static TextStyle gry16 = GoogleFonts.inter(
       color: Appcolors.greyColor, fontSize: 16);     
   static TextStyle  boldLine16PrimaryLight= GoogleFonts.inter(
-    color: Appcolors.blueColor,
+    color: Appcolors.darkblue,
     fontWeight: FontWeight.bold,
     textStyle: TextStyle(
       decoration: TextDecoration.underline,
@@ -47,7 +47,7 @@ static TextStyle gry16 = GoogleFonts.inter(
     static TextStyle black16 = GoogleFonts.inter(
       color: Appcolors.blackColor, fontSize: 16, );   
         static TextStyle brimaryLight16 = GoogleFonts.inter(
-      color: Appcolors.blueColor, fontSize: 16, );      
+      color: Appcolors.darkblue, fontSize: 16, );      
         static TextStyle boldWite20 = GoogleFonts.inter(
       color: Appcolors.whiteColor, fontSize: 20,fontWeight: FontWeight.bold ); 
               static TextStyle boldprimaryLight24 = GoogleFonts.inter(

@@ -31,4 +31,12 @@ class Appimages {
   static const String Meeting = "assets/images/Meeting.png";
   static const String Sport = "assets/images/Sport.png";
   static const String WorkShop = "assets/images/WorkShop.png";
+  
+  static const String categoryIcon = "assets/images/categoryIcon.png";
+  static const String hartIcon = "assets/images/hartIcon.png";
+  static const String profileIcon = "assets/images/profileIcon.png";
+  static const String ad1 = "assets/images/ad1.png";
+  static const String ad2 = "assets/images/ad2.png";
+  static const String ad3 = "assets/images/ad3.png";
+
 }
