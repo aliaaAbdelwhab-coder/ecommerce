@@ -4,11 +4,10 @@ import 'package:ecommerce/domain/entities/get_cart_productsEntity.dart';
 import 'package:ecommerce/domain/repositories/CartRepository.dart';
 import 'package:injectable/injectable.dart';
 @injectable
-class Getcartusecase {
+class Deletecartitemusecase {
   Cartrepository cartrepository;
-  Getcartusecase({required this.cartrepository});
-Future <Either<Faliures , GetCartEntity>>  invok() {
-    return cartrepository.GetCartItems();
+  Deletecartitemusecase({required this.cartrepository});
+  Future <Either<Faliures , GetCartEntity>>  invok(String itemID) {
+    return cartrepository.DeleteCartItem(itemID);
   }
-
 }

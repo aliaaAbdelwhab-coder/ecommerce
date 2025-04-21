@@ -9,6 +9,7 @@ import 'package:ecommerce/ui/card/cubit/cartViewModle.dart';
 import 'package:ecommerce/utils/appColors.dart';
 import 'package:ecommerce/utils/appStyles.dart';
 import 'package:ecommerce/utils/dialogUtils.dart';
+import 'package:ecommerce/utils/toastMS.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,7 +26,7 @@ class CardUI extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Product Details",
+          "Cart",
           style: Appstyles.bold20PrimaryLight,
         ),
         actions: [
@@ -40,7 +41,27 @@ class CardUI extends StatelessWidget {
         ],
         centerTitle: true,
       ),
-      body: BlocBuilder<Cartviewmodle, Cartstates>(
+      body: BlocConsumer<Cartviewmodle, Cartstates>(
+          buildWhen: (previous, current) {
+            if (current is deleteCartItmeSuccessState) {
+              cartviewmodle.getcartusecase;
+              return true;
+            }
+            return current is CartErrorState || current is CartSuccessState;
+          },
+          listener: (context, state) {
+            if (state is deleteCartItmeSuccessState ) {
+              return ToastMsg.toasMsg(
+                  msg: "delete item successfully",
+                  backgroundColor: Colors.green,
+                  textColor: Colors.white);
+            } else if (state is deleteCartItmeErrorState) {
+              return ToastMsg.toasMsg(
+                  msg: state.error.errorMsg,
+                  backgroundColor: Colors.red,
+                  textColor: Colors.white);
+            }
+          },
           bloc: cartviewmodle..getCart(),
           builder: (context, state) {
             if (state is CartLoadingState) {
@@ -60,6 +81,7 @@ class CardUI extends StatelessWidget {
                       itemCount:
                           state.cartResponseEntity.data!.products!.length,
                       itemBuilder: (context, index) => Container(
+                        margin: EdgeInsets.only(bottom: 24.h),
                         // height: 200.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15.r),
@@ -90,31 +112,40 @@ class CardUI extends StatelessWidget {
                             Column(
                               children: [
                                 Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    AutoSizeText(
-                                       
-                                      state
-                                              .cartResponseEntity
-                                              .data
-                                              ?.products?[index]
-                                              .product!
-                                              .title ??
-                                          ' ',
-                                      style: Appstyles.bold20PrimaryLight,
-                                      
-                                      
+                                    Container(
+                                      width: 255.w,
+                                      child: AutoSizeText(
+                                        state
+                                                .cartResponseEntity
+                                                .data
+                                                ?.products?[index]
+                                                .product!
+                                                .title ??
+                                            ' ',
+                                        style: Appstyles.bold20PrimaryLight,
+                                      ),
                                     ),
                                     IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        print(
+                                            "Id is :${state.cartResponseEntity.data!.products![index].product!.id!}");
+                                        return cartviewmodle.deleteCartItem(
+                                            state
+                                                    .cartResponseEntity
+                                                    .data
+                                                    ?.products![index]
+                                                    .product
+                                                    ?.id ??
+                                                '');
+                                      },
                                       icon: Icon(Icons.delete),
                                     ),
                                   ],
                                 ),
                                 Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  // mainAxisAlignment:
+                                  //     MainAxisAlignment.spaceBetween,
                                   children: [
                                     AutoSizeText(
                                       "EGP ${state.cartResponseEntity.data?.products?[index].price ?? ' '}",
@@ -135,7 +166,26 @@ class CardUI extends StatelessWidget {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           IconButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                int count = state
+                                                    .cartResponseEntity
+                                                    .data!
+                                                    .products![index]
+                                                    .count!
+                                                    .toInt();
+                                                count--;
+                                                return cartviewmodle
+                                                    .updateCartItem(
+                                                        state
+                                                                .cartResponseEntity
+                                                                .data
+                                                                ?.products![
+                                                                    index]
+                                                                .product
+                                                                ?.id ??
+                                                            '',
+                                                        count);
+                                              },
                                               icon: Icon(
                                                 Icons.remove_circle_outline,
                                                 color: Appcolors.whiteColor,
@@ -145,7 +195,27 @@ class CardUI extends StatelessWidget {
                                             style: Appstyles.boldWite20,
                                           ),
                                           IconButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                int count = state
+                                                    .cartResponseEntity
+                                                    .data!
+                                                    .products![index]
+                                                    .count!
+                                                    .toInt();
+                                                count++;
+                                                print("$count this is count =======");
+                                                return cartviewmodle
+                                                    .updateCartItem(
+                                                        state
+                                                                .cartResponseEntity
+                                                                .data
+                                                                ?.products![
+                                                                    index]
+                                                                .product
+                                                                ?.id ??
+                                                            '',
+                                                        count);
+                                              },
                                               icon: Icon(
                                                 Icons.add_circle_outline,
                                                 color: Appcolors.whiteColor,

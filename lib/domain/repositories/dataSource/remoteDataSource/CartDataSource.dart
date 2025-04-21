@@ -4,4 +4,6 @@ import 'package:ecommerce/domain/entities/get_cart_productsEntity.dart';
 
 abstract class Cartdatasource {
   Future <Either <Faliures , GetCartEntity>> GetCartItems ();
+  Future <Either <Faliures , GetCartEntity>> DeleteCartItem (String itemID);
+  Future <Either <Faliures , GetCartEntity>> updateCartItem (String itemID,int count);
 }

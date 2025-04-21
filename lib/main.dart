@@ -2,6 +2,7 @@ import 'package:ecommerce/core/di/di.dart';
 import 'package:ecommerce/core/shearedPrefrences/shearedPrefrencesUtils.dart';
 import 'package:ecommerce/ui/Register/registerui.dart';
 import 'package:ecommerce/ui/card/card.dart';
+import 'package:ecommerce/ui/card/cubit/cartViewModle.dart';
 import 'package:ecommerce/ui/categoryTab/cubit/categoryTabViewModle.dart';
 import 'package:ecommerce/ui/categoryTab/itemDetails/itemDetails.dart';
 import 'package:ecommerce/ui/homeScreen/homeScreen.dart';
@@ -30,7 +31,8 @@ void main() async {
   runApp(MultiBlocProvider 
   (
     providers: [
-      BlocProvider(create: (context)=>getIt<Categorytabviewmodle>())
+      BlocProvider(create: (context)=>getIt<Categorytabviewmodle>()),
+      // BlocProvider(create: (context)=>getIt<Cartviewmodle>())
     ],
     child: MyApp(initialrouteName: initialrouteName)));
 }

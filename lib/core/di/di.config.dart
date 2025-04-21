@@ -29,12 +29,14 @@ import '../../domain/repositories/dataSource/remoteDataSource/homeRemoteDataSour
     as _i409;
 import '../../domain/repositories/home/homeRepository.dart' as _i561;
 import '../../domain/useCasese/AddToCartUseCase.dart' as _i425;
+import '../../domain/useCasese/deleteCartItemUseCase.dart' as _i523;
 import '../../domain/useCasese/getAllBrandsUseCase.dart' as _i312;
 import '../../domain/useCasese/getAllCategoryUseCase.dart' as _i593;
 import '../../domain/useCasese/GetCartUseCase.dart' as _i953;
 import '../../domain/useCasese/getProductsUseCase.dart' as _i978;
 import '../../domain/useCasese/LoginUserCase.dart' as _i133;
 import '../../domain/useCasese/RegisterUserCase.dart' as _i372;
+import '../../domain/useCasese/UpdateCartItemUseCase.dart' as _i461;
 import '../../ui/card/cubit/cartViewModle.dart' as _i915;
 import '../../ui/categoryTab/cubit/categoryTabViewModle.dart' as _i293;
 import '../../ui/homeTab/cubit/homeTabeViewModle.dart' as _i570;
@@ -90,10 +92,17 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i953.Getcartusecase>(
         () => _i953.Getcartusecase(cartrepository: gh<_i318.Cartrepository>()));
+    gh.factory<_i523.Deletecartitemusecase>(() => _i523.Deletecartitemusecase(
+        cartrepository: gh<_i318.Cartrepository>()));
+    gh.factory<_i461.Updatecartitemusecase>(() => _i461.Updatecartitemusecase(
+        cartrepository: gh<_i318.Cartrepository>()));
     gh.factory<_i142.Loginviewmodle>(
         () => _i142.Loginviewmodle(loginusercase: gh<_i133.Loginusercase>()));
-    gh.factory<_i915.Cartviewmodle>(
-        () => _i915.Cartviewmodle(getcartusecase: gh<_i953.Getcartusecase>()));
+    gh.factory<_i915.Cartviewmodle>(() => _i915.Cartviewmodle(
+          getcartusecase: gh<_i953.Getcartusecase>(),
+          deletecartitemusecase: gh<_i523.Deletecartitemusecase>(),
+          updatecartitemusecase: gh<_i461.Updatecartitemusecase>(),
+        ));
     return this;
   }
 }
